@@ -1,0 +1,11 @@
+#novoUsuario {
+    margin: 30px;
+    margin-left: 5px;
+}
+
+@media (max-width: 858px){
+    .table-container {
+        overflow-x: scroll;
+    }
+}
+  

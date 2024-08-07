@@ -1,0 +1,27 @@
+<div class="container">
+    <br>
+    <h1>Editar Tarefas</h1>
+
+    <div class="row">        
+        <div class="col-sm-12">
+            <form>
+                <div class="form-group row">  
+                    <div class="col-3">
+                        <label for="form-label">Título</label><span>*</span>
+                        <input [(ngModel)]="Tarefa.sNmTitulo" type="text" class="form-control" name="sNmTitulo">
+                    </div>
+                    <div class="col-3">
+                        <label for="form-label">SLA</label><span>*</span>
+                        <input [(ngModel)]="Tarefa.sDsSLA" type="text" class="form-control" name="sDsSLA">
+                    </div>
+                </div>
+
+            </form>
+            <br>
+            <div class="form-group">
+                <button (click)="atualizar()" type="button" class="btn btn-success">Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>
+

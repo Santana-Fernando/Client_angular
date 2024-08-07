@@ -1,0 +1,32 @@
+<nav>
+  <input type="checkbox" id="check">
+  <label for="check" class="checkbtn">
+    <i class="fas fa-bars"></i>
+  </label>
+  <label class="logo">Registros</label>
+  <ul>
+    <li><a (click)="irAteARota()" routerLink="/novo" >Cadastrar Tarefas</a></li>
+    <li><a (click)="irAteARota()" routerLink="/inicio" >Lista de Tarefas</a></li>
+  </ul>
+</nav>
+
+
+
+
+<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Cadastro</a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="/novo" >Cadastrar</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="/inicio" >Lista de Usuários</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav> -->
+
+<router-outlet></router-outlet>

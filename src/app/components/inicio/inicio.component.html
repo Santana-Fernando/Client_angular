@@ -1,0 +1,37 @@
+
+
+<div class="container">
+  <br>
+  <h1>Lista de Tarefas</h1>
+  
+  <div class="table-container">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Título</th>
+            <th scope="col">SLA</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let tarefa of Tarefas">
+                <td>{{tarefa.Id}}</td>
+                <td>{{tarefa.sNmTitulo}}</td>
+                <td>{{tarefa.sDsSLA}}</td>
+                <td><button (click)="atualizar(tarefa.Id)" type="button" class="btn btn-primary">Editar</button></td>
+                <td><button
+                  class="btn btn-danger"
+                  mwlConfirmationPopover
+                  [popoverTitle]="popoverTitle"
+                  [popoverMessage]="popoverMessage"
+                  placement="left"
+                  (confirm)="remover(tarefa.Id, tarefa.sNmTitulo)"
+                  (cancel)="cancelClicked = true"
+                >
+                  Remover
+                </button></td>
+              </tr>
+        </tbody>
+      </table>
+  </div>
+</div>
