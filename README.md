@@ -21,3 +21,9 @@ npm i
 ```
 npm start
 ```
+
+## Caso o Server esteja rodando no Docker
+ Vá em api.service.ts e altere a variavel ``` url ``` exatamente com a seguinte configuração
+ ```
+  url="http://localhost:8001/api/Tarefa";
+```
