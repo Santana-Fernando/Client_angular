@@ -39,7 +39,10 @@ export class ApiService {
     let { sNmTitulo, sDsSLA } = tarefa
 
     if(!this.hasValue(sNmTitulo)) return 'Insira o título da tarefa'
+    if(sNmTitulo.length > 100 || sNmTitulo.length < 3) return 'Faça uma descrição de 3 a 100 caracteres'
     if(!this.hasValue(sDsSLA)) return 'Insira o sDsSLA da tarefa'
+    if(sDsSLA.length > 5 || sDsSLA.length < 2) return 'Informe um valor entre 2 a 5 dígitos'    
+    if(Number.isNaN(sDsSLA)) return 'Informe um número válido'
 
     return true
   }
