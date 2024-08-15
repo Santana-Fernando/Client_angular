@@ -1,6 +1,6 @@
 <div class="container">
     <br>
-    <h1>Nova Taefa</h1>
+    <h1>Nova Tarefa</h1>
 
     <div class="row">        
         <div class="col-sm-12">
@@ -13,6 +13,10 @@
                     <div class="col-3">
                         <label for="form-label">SLA</label><span>*</span>
                         <input [(ngModel)]="Tarefa.sDsSLA" type="text" class="form-control" name="sDsSLA">
+                    </div>
+                    <div class="col-3">
+                        <label for="form-label">Anexo</label><span>*</span>
+                        <input type="file" (change)="onFileSelected($event)" class="form-control" name="sDsCaminhoAnexo" id="sDsCaminhoAnexo">
                     </div>
                 </div>
 

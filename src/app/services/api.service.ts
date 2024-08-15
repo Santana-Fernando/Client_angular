@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,10 +15,24 @@ export class ApiService {
     return this.http.get(this.url + '/GetList')
   }
 
+  listarSituacaoTarefas() {
+    return this.http.get(this.url + '/GetListSituacao')
+  }
+
   listarTarefasPorId(id: string) {
     return this.http.get(this.url+'/GetById?id='+id)
   }
 
+  uploadFile(file: File): Observable<any> {
+    const formData: FormData = new FormData();
+    formData.append('file', file, file.name);
+
+    return this.http.post(`${this.url}/upload`, formData);
+  }
+
+  downloadFile(fileName: string): Observable<Blob> {
+    return this.http.get(`${this.url}/download?fileName=${fileName}`, { responseType: 'blob' });
+  }
   
   addTarefas(tarefa: any) {
     return this.http.post(this.url+'/Register', tarefa)
@@ -63,6 +78,6 @@ export interface ITarefa {
 }
 
 export interface ITarefaSituacao {
-  Id: string;
+  Id: number;
   sNmSituacao: string;
 }

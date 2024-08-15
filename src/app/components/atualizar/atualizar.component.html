@@ -14,6 +14,14 @@
                         <label for="form-label">SLA</label><span>*</span>
                         <input [(ngModel)]="Tarefa.sDsSLA" type="text" class="form-control" name="sDsSLA">
                     </div>
+                    <div class="col-3">
+                        <label for="form-label">Situação</label><span>*</span>
+                        <select [(ngModel)]="Tarefa.nStSituacao" (change)="onSituacaoChange($event)" class="form-control" [ngModelOptions]="{standalone: true}">
+                            <option *ngFor="let situacao of SituacaoTarefa" [value]="situacao.Id">
+                              {{ situacao.sNmSituacao }}
+                            </option>
+                        </select>
+                    </div>
                 </div>
 
             </form>

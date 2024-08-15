@@ -11,13 +11,16 @@ import { ToastrService } from 'ngx-toastr';
 
 export class AtualizarComponent implements OnInit {
 
+  SituacaoTarefa: ITarefaSituacao[] = [
+    { Id: 0, sNmSituacao: '' },
+  ];
 
   Tarefa: ITarefa = {
     Id: '',
     sNmTitulo:'',
     sDsSLA:'',
     tDtCadastro: new Date(Date.now()),
-    nStSituacao: 1
+    nStSituacao: 0
   };
 
   constructor(private ApiService: ApiService, private router: Router, private activatedRoute:ActivatedRoute, private toastr: ToastrService) { }
@@ -25,12 +28,31 @@ export class AtualizarComponent implements OnInit {
   ngOnInit(): void {
     const id = this.activatedRoute.snapshot.params['id']
     
+    this.listarSituacaoTarefas();
     this.getTarefaById(id);
+  }
+
+  listarSituacaoTarefas(){
+    this.ApiService.listarSituacaoTarefas().subscribe(
+      (res: any) => {
+        this.SituacaoTarefa = res
+      },
+      (err) =>  {
+        this.toastr.error(err)
+      }
+    )
+  }
+
+  onSituacaoChange(event: Event) {
+    const selectElement = event.target as HTMLSelectElement;
+    this.Tarefa.nStSituacao = Number(selectElement.value);
+    console.log('nStSituacao atualizado para:', this.Tarefa.nStSituacao);
   }
 
   getTarefaById(id: string) {
     this.ApiService.listarTarefasPorId(id).subscribe(
       (res: any) => {
+        console.log(res)
         this.Tarefa = res
       },
       (err) =>  {
@@ -42,7 +64,7 @@ export class AtualizarComponent implements OnInit {
   async atualizar() {
     const id = this.activatedRoute.snapshot.params['id']
     this.Tarefa.Id
-
+    
     let validacoes = await this.ApiService.validarCampo(this.Tarefa)
 
     if(validacoes != true) {

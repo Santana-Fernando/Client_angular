@@ -11,6 +11,7 @@
             <th scope="col">Id</th>
             <th scope="col">Título</th>
             <th scope="col">SLA</th>
+            <th scope="col">Situação</th>
           </tr>
         </thead>
         <tbody>
@@ -18,6 +19,15 @@
                 <td>{{tarefa.Id}}</td>
                 <td>{{tarefa.sNmTitulo}}</td>
                 <td>{{tarefa.sDsSLA}}</td>
+                <td><p [ngClass]="retornarSituacaoText(tarefa.nStSituacao)">{{ retornarSituacao(tarefa.nStSituacao) }}</p></td>
+                <td>
+                  <button 
+                    (click)="download(tarefa.sDsCaminhoAnexo!)" 
+                    class="btn btn-primary" 
+                    [disabled]="!tarefa.sDsCaminhoAnexo">
+                    {{ 'Baixar arquivo' || 'Nome do arquivo não disponível' }}
+                  </button>
+                </td>
                 <td><button (click)="atualizar(tarefa.Id)" type="button" class="btn btn-primary">Editar</button></td>
                 <td><button
                   class="btn btn-danger"

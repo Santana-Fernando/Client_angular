@@ -3,6 +3,11 @@
     margin-left: 5px;
 }
 
+.situacao {
+    border-radius: 10px;
+    text-align: center;
+}
+
 @media (max-width: 858px){
     .table-container {
         overflow-x: scroll;
