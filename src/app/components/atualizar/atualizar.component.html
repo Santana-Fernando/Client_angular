@@ -15,6 +15,10 @@
                         <input [(ngModel)]="Tarefa.sDsSLA" type="text" class="form-control" name="sDsSLA">
                     </div>
                     <div class="col-3">
+                        <label for="form-label">Anexo</label>
+                        <input type="file" (change)="onFileSelected($event)" class="form-control" name="sDsCaminhoAnexo" id="sDsCaminhoAnexo">
+                    </div>
+                    <div class="col-3">
                         <label for="form-label">Situação</label><span>*</span>
                         <select [(ngModel)]="Tarefa.nStSituacao" (change)="onSituacaoChange($event)" class="form-control" [ngModelOptions]="{standalone: true}">
                             <option *ngFor="let situacao of SituacaoTarefa" [value]="situacao.Id">

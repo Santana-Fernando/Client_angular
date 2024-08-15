@@ -34,6 +34,8 @@ export class RegistrarComponent implements OnInit {
 
   async registrarNovaTarefa() {
     delete this.Tarefa.Id;
+    
+    if(this.selectedFile) this.Tarefa.sDsCaminhoAnexo = this.selectedFile.name;
 
     let validacoes = await this.ApiService.validarCampo(this.Tarefa);
     if (validacoes !== true) {
@@ -44,9 +46,8 @@ export class RegistrarComponent implements OnInit {
     this.ApiService.uploadFile(this.selectedFile).subscribe(
         (response) => {
             const sDsCaminhoAnexo = response.FilePath;
-            this.Tarefa.sDsCaminhoAnexo = sDsCaminhoAnexo;  // Supondo que você precisa atribuir o caminho ao objeto Tarefa
-
-            // Agora que temos o caminho do anexo, podemos chamar o addTarefas
+            this.Tarefa.sDsCaminhoAnexo = sDsCaminhoAnexo;
+            
             this.ApiService.addTarefas(this.Tarefa).subscribe(
                 (res: any) => {
                     this.toastr.success("Operação realizada com sucesso");

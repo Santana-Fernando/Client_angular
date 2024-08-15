@@ -34,6 +34,13 @@ export class ApiService {
     return this.http.get(`${this.url}/download?fileName=${fileName}`, { responseType: 'blob' });
   }
   
+  atualizarArquivo(fileName: string, arquivo: File): Observable<any> {
+    const formData = new FormData();
+    formData.append('novoArquivo', arquivo);
+
+    return this.http.put(`${this.url}/atualizar-arquivo?nomeArquivo=${fileName}`, formData);
+  }
+
   addTarefas(tarefa: any) {
     return this.http.post(this.url+'/Register', tarefa)
   }
@@ -51,14 +58,14 @@ export class ApiService {
   }
 
   validarCampo(tarefa: any) {
-    let { sNmTitulo, sDsSLA } = tarefa
+    let { sNmTitulo, sDsSLA, sDsCaminhoAnexo } = tarefa
 
     if(!this.hasValue(sNmTitulo)) return 'Insira o título da tarefa'
     if(sNmTitulo.length > 100 || sNmTitulo.length < 3) return 'Faça uma descrição de 3 a 100 caracteres'
-    if(!this.hasValue(sDsSLA)) return 'Insira o sDsSLA da tarefa'
+    if(!this.hasValue(sDsSLA)) return 'Insira o SLA da tarefa'
     if(sDsSLA.length > 5 || sDsSLA.length < 2) return 'Informe um valor entre 2 a 5 dígitos'    
-    if(Number.isNaN(sDsSLA)) return 'Informe um número válido'
-
+    if(Number.isNaN(Number(sDsSLA))) return 'Informe um número válido'
+    if(!this.hasValue(sDsCaminhoAnexo)) return 'Insira um arquivo para cadastro'
     return true
   }
 
@@ -71,8 +78,8 @@ export class ApiService {
 export interface ITarefa {
   Id?: string;
   sNmTitulo: string;
-  sDsCaminhoAnexo?: string;
-  sDsSLA?: string;
+  sDsCaminhoAnexo: string;
+  sDsSLA: string;
   tDtCadastro: Date;
   nStSituacao: number;
 }
