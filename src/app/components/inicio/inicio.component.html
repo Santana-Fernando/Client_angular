@@ -3,7 +3,16 @@
 <div class="container">
   <br>
   <h1>Lista de Tarefas</h1>
-  
+
+  <div class="form-group">
+    <label for="filtroSituacao">Situação</label>
+    <select id="filtroSituacao" [(ngModel)]="filtroSituacao" class="form-control">
+      <option value="">Todas as Situações</option>
+      <option *ngFor="let situacao of SituacaoTarefa" [value]="situacao.Id">
+        {{ situacao.sNmSituacao }}
+      </option>
+    </select>
+  </div>
   <div class="table-container">
     <table class="table">
         <thead>
@@ -15,7 +24,7 @@
           </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let tarefa of Tarefas">
+            <tr *ngFor="let tarefa of tarefasFiltradas">
                 <td>{{tarefa.Id}}</td>
                 <td>{{tarefa.sNmTitulo}}</td>
                 <td>{{tarefa.sDsSLA}}</td>

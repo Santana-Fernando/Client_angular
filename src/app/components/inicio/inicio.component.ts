@@ -15,6 +15,7 @@ export class InicioComponent implements OnInit {
 
   Tarefas: ITarefa[] = [];
   SituacaoTarefa: ITarefaSituacao[] = [];
+  filtroSituacao: number | string = '';
 
   popoverTitle = 'Remover tarefa';
   popoverMessage = 'Deseja excluir o tarefa?';
@@ -53,6 +54,12 @@ export class InicioComponent implements OnInit {
       res => this.Tarefas =<any>res,
       err => this.toastr.error(err)
     );
+  }
+
+  get tarefasFiltradas() {
+    return this.Tarefas.filter(tarefa => {
+      return this.filtroSituacao ? tarefa.nStSituacao == this.filtroSituacao : true;
+    });
   }
 
   retornarSituacao(situacaoId: number | string): string {
