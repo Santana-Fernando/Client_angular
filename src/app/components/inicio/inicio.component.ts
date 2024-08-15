@@ -29,7 +29,7 @@ export class InicioComponent implements OnInit {
     4: 'situacao text-white bg-danger'
   };
 
-  constructor(private ApiService: ApiService, private router: Router, private toastr: ToastrService, private http: HttpClient) {
+  constructor(private ApiService: ApiService, private router: Router, public toastr: ToastrService, private http: HttpClient) {
   
   }
 
@@ -103,5 +103,14 @@ export class InicioComponent implements OnInit {
     }, (error) => {
       console.error('Erro ao baixar o arquivo:', error);
     });
+  }
+
+  varificarSeSLAVenceu(tarefa: ITarefa): Boolean {
+    const { tDtCadastro, sDsSLA, nStSituacao } = tarefa;
+
+    const dataAtual = new Date();
+    const dataFinal = new Date(new Date(tDtCadastro).getTime() + Number(sDsSLA) * 60 * 60 * 1000);
+    
+    return dataFinal < dataAtual && (nStSituacao == 4 || nStSituacao == 2 || nStSituacao == 1);
   }
 }

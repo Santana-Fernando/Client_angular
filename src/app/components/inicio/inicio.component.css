@@ -8,6 +8,10 @@
     text-align: center;
 }
 
+.warning {
+    color: #ffc107;
+}
+
 @media (max-width: 858px){
     .table-container {
         overflow-x: scroll;

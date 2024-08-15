@@ -13,6 +13,8 @@
       </option>
     </select>
   </div>
+  <br>
+  <br>
   <div class="table-container">
     <table class="table">
         <thead>
@@ -49,6 +51,9 @@
                 >
                   Remover
                 </button></td>
+                <td>
+                  <i *ngIf="varificarSeSLAVenceu(tarefa)" class="bi bi-exclamation-circle-fill warning" (click)="this.toastr.warning('O SLA da tarefa ' + tarefa.sNmTitulo + ' Venceu.', 'Aviso');"></i>
+                </td>
               </tr>
         </tbody>
       </table>
